@@ -1,10 +1,11 @@
-import { AvatarDropdown, AvatarName, Footer, Question, SelectLang } from '@/components';
-import { getLoginUserUsingGET } from '@/services/kaka/userController';
+import { Footer, Question, SelectLang, AvatarDropdown, AvatarName } from '@/components';
 import { LinkOutlined } from '@ant-design/icons';
 import { SettingDrawer } from '@ant-design/pro-components';
 import type { RunTimeLayoutConfig } from '@umijs/max';
-import { Link, history } from '@umijs/max';
+import { history, Link } from '@umijs/max';
 import { errorConfig } from './requestErrorConfig';
+import React from 'react';
+import {getLoginUserUsingGET} from "@/services/kaka/userController";
 const isDev = process.env.NODE_ENV === 'development';
 const loginPath = '/user/login';
 
@@ -31,7 +32,8 @@ export async function getInitialState(): Promise<{
       currentUser,
     };
   }
-  return {};
+  return {
+  };
 }
 
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
@@ -119,7 +121,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
  * @doc https://umijs.org/docs/max/request#配置
  */
 export const request = {
-  baseURL: 'http://localhost:8108/',
+  baseURL:"http://localhost:8108/",
   withCredentials: true,
   ...errorConfig,
 };

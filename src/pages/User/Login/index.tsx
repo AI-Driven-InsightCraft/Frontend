@@ -40,10 +40,9 @@ const Login: React.FC = () => {
         // @ts-ignore
         setInitialState((s) => ({
           ...s,
-          currentUser: userInfo,
+          currentUser: userInfo.data,
         }));
       });
-      console.log(initialState);
     }
   };
 
@@ -54,7 +53,7 @@ const Login: React.FC = () => {
       if (res.code === 0) {
         const defaultLoginSuccessMessage = intl.formatMessage({
           id: 'pages.login.success',
-          defaultMessage: '登录成功！',
+          defaultMessage: 'login success',
         });
         message.success(defaultLoginSuccessMessage);
         await fetchUserInfo();
@@ -67,7 +66,7 @@ const Login: React.FC = () => {
     } catch (error) {
       const defaultLoginFailureMessage = intl.formatMessage({
         id: 'pages.login.failure',
-        defaultMessage: '登录失败，请重试！',
+        defaultMessage: 'login fail, please try again',
       });
       console.log(error);
       message.error(defaultLoginFailureMessage);
@@ -80,7 +79,7 @@ const Login: React.FC = () => {
         <title>
           {intl.formatMessage({
             id: 'menu.login',
-            defaultMessage: '登录页',
+            defaultMessage: 'Login Page',
           })}
           - {Settings.title}
         </title>
@@ -97,8 +96,8 @@ const Login: React.FC = () => {
             maxWidth: '75vw',
           }}
           logo={<img alt="logo" src="/logo.svg" />}
-          title="AIGC BI"
-          subTitle={'AIGI BI Platform is developed by Kassaking7'}
+          title="AI-Driven InsightCraft"
+          subTitle={'Developed by Kassaking7'}
           onFinish={async (values) => {
             await handleSubmit(values as API.UserLoginRequest);
           }}

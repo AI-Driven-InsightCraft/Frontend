@@ -1,14 +1,14 @@
-import { userLogoutUsingPOST } from '@/services/kaka/userController';
-import { useIntl } from '@@/exports';
 import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
 import { useEmotionCss } from '@ant-design/use-emotion-css';
 import { history, useModel } from '@umijs/max';
-import { Spin, message } from 'antd';
+import {message, Spin} from 'antd';
 import { stringify } from 'querystring';
 import type { MenuInfo } from 'rc-menu/lib/interface';
 import React, { useCallback } from 'react';
 import { flushSync } from 'react-dom';
 import HeaderDropdown from '../HeaderDropdown';
+import {userLoginUsingPOST, userLogoutUsingPOST} from "@/services/kaka/userController";
+import {useIntl} from "@@/exports";
 
 export type GlobalHeaderRightProps = {
   menu?: boolean;
@@ -29,7 +29,7 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu, childre
   const loginOut = async () => {
     try {
       // 登录
-      const res = await userLogoutUsingPOST();
+      const res = await userLogoutUsingPOST()
       if (res.code === 0) {
         const defaultLoginSuccessMessage = intl.formatMessage({
           id: 'pages.logout.success',

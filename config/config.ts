@@ -1,5 +1,6 @@
 // https://umijs.org/config/
 import { defineConfig } from '@umijs/max';
+import { join } from 'path';
 import defaultSettings from './defaultSettings';
 import proxy from './proxy';
 import routes from './routes';
@@ -136,8 +137,8 @@ export default defineConfig({
   openAPI: [
     {
       requestLibPath: "import { request } from '@umijs/max'",
-      schemaPath: 'http://localhost:8108/api/v2/api-docs',
-      projectName: 'kaka',
+      schemaPath: "http://localhost:8108/api/v2/api-docs",
+      projectName:"kaka",
       //schemaPath: join(__dirname, 'oneapi.json'),
       mock: false,
     },

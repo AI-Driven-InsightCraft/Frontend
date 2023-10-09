@@ -1,32 +1,35 @@
-import { genChartByAiAsyncUsingPOST } from '@/services/kaka/chartController';
-import { UploadOutlined } from '@ant-design/icons';
-import { Button, Card, Form, Input, Select, Space, Upload, message } from 'antd';
-import { useForm } from 'antd/es/form/Form';
-import TextArea from 'antd/es/input/TextArea';
-import React, { useState } from 'react';
+import {genChartByAiAsyncMqUsingPOST} from '@/services/kaka/chartController';
+import { UploadOutlined } from "@ant-design/icons";
+import { Button,Card,Form,Input,message,Select,Space,Upload } from 'antd';
+import TextArea from "antd/es/input/TextArea";
+import React,{ useState } from 'react';
+import {useForm} from "antd/es/form/Form";
+
+
 
 const AddChartAsync: React.FC = () => {
   const [form] = useForm();
   const [submitting, setSubmitting] = useState<boolean>(false);
-  const onFinish = async (values: any) => {
+  const onFinish = async  (values: any) => {
     const params = {
       ...values,
-      file: undefined,
-    };
+      file: undefined
+    }
     setSubmitting(true);
     try {
-      const res = await genChartByAiAsyncUsingPOST(params, {}, values.file.file.originFileObj);
+      const res = await genChartByAiAsyncMqUsingPOST(params,{},values.file.file.originFileObj);
       console.log(res.data);
       if (!res?.data) {
-        message.error('analyzed failed');
+        message.error("analyzed failed")
       } else {
-        message.success('analyzed the request, see result in My Charts Page');
+        message.success("analyzed the request, see result in My Charts Page");
         form.resetFields();
       }
-    } catch (e: any) {
-      message.error('fail to analyze, ' + e.message);
+
+    } catch (e:any){
+      message.error("fail to analyze, "+e.message);
     }
-    setSubmitting(false);
+    setSubmitting(false)
   };
 
   return (
